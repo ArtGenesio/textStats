@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <textarea name="text" id="text"></textarea>
+    <div>
+        <div>Ilosc znaków: <span id="numCharacters"></span></div>
+        <div>Ilosc słów: <span id="numWords"></span></div>
+        <div>Ilosc zdań: <span id="numSentences"></span></div>
+    </div>
+
+    <script>
+        let data = document.getElementById("text")
+        data.addEventListener("input",onChange)
+        function onChange(event) {
+            const text = data.value
+            const numCharacters = text.length
+            document.getElementById("numCharacters").innerHTML = numCharacters
+            var numWords = text.replace(/[\r\n]/g, " ").split(' ') //zamiana znaków jak koniec linii na spacje
+            numWords = numWords.filter(word => word !== '') //filtrowanie, aby nic w tablicy nie równało się 'spacja'
+            console.log(numWords)
+            const numWordsLength = numWords.length
+            document.getElementById("numWords").innerHTML = numWordsLength
+            const numSentences = text.split(".").length -1
+            document.getElementById('numSentences').innerHTML = numSentences
+        }
+    </script>
+</body>
+</html>
